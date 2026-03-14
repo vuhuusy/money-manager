@@ -1,39 +1,19 @@
-# Changelog
+# 0.1.0 (2026-03-14)
 
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Bug Fixes
 
-## [Unreleased]
+* **ci:** add write permissions for changelog workflow ([0d38040](https://github.com/vuhuusy/money-manager/commit/0d3804060e0ae20db9e4a5d079e944f65bd6e6bc))
 
-### Added
 
-### Changed
+### Features
 
-### Fixed
+* add spring boot application entry point ([82472af](https://github.com/vuhuusy/money-manager/commit/82472af238f51f6afa1ca3571a42fe5c6d5ed3c0))
+* **controller:** add home and profile controllers ([98cefbb](https://github.com/vuhuusy/money-manager/commit/98cefbb5e95e92c95ce89f3fbecec222a22974ae))
+* **dto:** add auth and profile data transfer objects ([d60794f](https://github.com/vuhuusy/money-manager/commit/d60794feea8fa8b6c9f8db987bc1261441e17ca9))
+* **profile:** add profile entity and repository ([2231e6c](https://github.com/vuhuusy/money-manager/commit/2231e6c4944c093d29e7e7928fd6c9047df7bf1d))
+* **security:** add spring security configuration ([a95f3ba](https://github.com/vuhuusy/money-manager/commit/a95f3bae9bc0470a697c2833e000483e717aea40))
+* **service:** add profile, email, and user details services ([6ff7dbc](https://github.com/vuhuusy/money-manager/commit/6ff7dbce6ceae7f96063f3438ebe61b2d7bedf74))
 
-### Removed
 
-### Security
 
-## [0.1.0] - 2026-03-14
-
-### Added
-
-- Spring Boot application entry point
-- Profile module with entity and repository
-- Auth and Profile data transfer objects (DTOs)
-- Service layer: ProfileService, EmailService, AppUserDetailsService
-- REST controllers: HomeController, ProfileController
-- Spring Security configuration
-- Maven wrapper and project configuration
-- Conventional commit message generator agent
-
-### Security
-
-- Externalized sensitive credentials to environment variables
-- Added `.env` to `.gitignore` to prevent credential exposure
-
-[Unreleased]: https://github.com/username/money-manager/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/username/money-manager/releases/tag/v0.1.0
