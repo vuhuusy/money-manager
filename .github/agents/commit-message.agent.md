@@ -1,4 +1,4 @@
----
+﻿---
 description: "Use when: generating git commit messages, writing commits, creating commit message, conventional commits"
 tools: [execute, read]
 ---
@@ -20,8 +20,17 @@ You are a git commit message generator. Your job is to analyze staged changes an
 - `test` - Adding or updating tests
 - `chore` - Maintenance tasks, dependency updates, build changes
 
-### Scope (optional)
-A scope narrows the context (e.g., `auth`, `api`, `ui`, `config`). Use when the change is isolated to a specific module or feature.
+### Project Scopes
+Use these scopes based on which module/layer the change affects:
+- `profile` - ProfileEntity, ProfileRepository, ProfileService, ProfileController
+- `auth` - Authentication, AuthDTO, AppUserDetailsService
+- `security` - SecurityConfig, security-related changes
+- `config` - Application configuration, properties
+- `controller` - REST controllers (HomeController, etc.)
+- `service` - Service layer classes
+- `dto` - Data transfer objects
+- `entity` - JPA entities
+- `repository` - Spring Data repositories
 
 ### Description
 - Use imperative mood: "add feature" not "added feature"
@@ -29,12 +38,25 @@ A scope narrows the context (e.g., `auth`, `api`, `ui`, `config`). Use when the 
 - No period at the end
 - Keep under 72 characters
 
+## Examples from this project
+
+```
+feat: add spring boot application entry point
+feat(profile): add profile entity and repository
+feat(dto): add auth and profile data transfer objects
+feat(service): add profile, email, and user details services
+feat(controller): add home and profile controllers
+feat(security): add spring security configuration
+chore: add maven wrapper and project configuration
+chore(config): externalize sensitive credentials to environment variables
+```
+
 ## Approach
 
 1. Run `git diff --staged` to see what changes are staged
 2. If nothing is staged, run `git diff` to see unstaged changes and inform the user
 3. Analyze the changes to understand the intent
-4. Determine the appropriate type and optional scope
+4. Determine the appropriate type and scope based on modified files/packages
 5. Generate a concise, meaningful description
 
 ## Constraints
