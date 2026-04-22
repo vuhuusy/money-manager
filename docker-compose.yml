@@ -1,0 +1,58 @@
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: ${MYSQL_DB:-moneymanager}
+      MARIADB_USER: ${MYSQL_DB_USERNAME}
+      MARIADB_PASSWORD: ${MYSQL_DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    environment:
+      # MariaDB — picked up by application-prod.properties
+      MYSQL_DB_URL: jdbc:mariadb://db:3306/${MYSQL_DB:-moneymanager}
+      MYSQL_DB_USERNAME: ${MYSQL_DB_USERNAME}
+      MYSQL_DB_PASSWORD: ${MYSQL_DB_PASSWORD}
+      # Auth
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      # Mail
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_FROM: ${MAIL_FROM}
+      # Public URL — same domain serves both frontend and API via nginx proxy
+      MONEY_MANAGER_FRONTEND_URL: ${APP_URL}
+      MONEY_MANAGER_BACKEND_URL: ${APP_URL}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  mariadb_data:

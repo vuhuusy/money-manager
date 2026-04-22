@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Be Vietnam Pro", sans-serif;
+  background-color: #fcfbfc;
+  overflow-x: hidden;
+}
+
+.Toastify__toast {
+  font-family: "Be Vietnam Pro", sans-serif !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #7c3aed !important;
+}
+
+.Toastify__toast-icon--success svg {
+  fill: #7c3aed !important;
+}
+
+.Toastify__progress-bar--info {
+  background: #7c3aed !important;
+}
+
+.Toastify__toast-icon--info svg {
+  fill: #7c3aed !important;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-md transition-colors duration-200 cursor-pointer;
+  }
+
+  .card {
+    @apply bg-white border border-gray-200 rounded-xl shadow-sm p-4;
+  }
+
+  .add-btn {
+    @apply bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium px-4 py-2 rounded-md transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .add-btn-fill {
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .card-btn {
+    @apply flex items-center gap-2 text-sm font-medium text-violet-600 bg-violet-50 hover:bg-violet-100 px-4 py-2 rounded-md transition-colors duration-200 cursor-pointer;
+  }
+}
