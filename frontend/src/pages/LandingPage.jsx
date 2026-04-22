@@ -92,7 +92,7 @@ const LandingPage = () => {
 
             {/* CTA */}
             <section className="flex flex-col items-center justify-center text-center px-6 py-20">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to get started?</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to get started???</h2>
                 <p className="text-gray-500 mb-8">Join thousands of users managing their finances smarter.</p>
                 <button
                     onClick={() => navigate("/signup")}
