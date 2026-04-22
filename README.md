@@ -15,15 +15,15 @@ A personal finance management web application for tracking income, expenses, and
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | React 19, Vite, Tailwind CSS, Recharts, React Router |
-| Backend | Spring Boot 3.5, Java 21, Spring Security, JPA/Hibernate |
-| Database | MariaDB 11 |
-| Auth | JWT (JJWT), BCrypt, Email activation |
-| Email | SMTP (Brevo, Gmail, or any provider) |
-| File Storage | Cloudinary (profile images) |
-| Infrastructure | Docker, Docker Compose, Nginx, Cloudflare Tunnel |
+| Layer          | Technology                                               |
+| -------------- | -------------------------------------------------------- |
+| Frontend       | React 19, Vite, Tailwind CSS, Recharts, React Router     |
+| Backend        | Spring Boot 3.5, Java 21, Spring Security, JPA/Hibernate |
+| Database       | MariaDB 11                                               |
+| Auth           | JWT (JJWT), BCrypt, Email activation                     |
+| Email          | SMTP (Brevo, Gmail, or any provider)                     |
+| File Storage   | Cloudinary (profile images)                              |
+| Infrastructure | Docker, Docker Compose, Nginx, Cloudflare Tunnel         |
 
 ## Architecture
 
@@ -83,49 +83,49 @@ Base path: `/api/v1.0`
 
 ### Auth & Profile
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| POST | `/register` | Public | Register new account |
-| GET | `/activate?token=` | Public | Activate account via email link |
-| POST | `/login` | Public | Login, returns JWT token |
-| GET | `/profile` | Required | Get current user profile |
+| Method | Endpoint           | Auth     | Description                     |
+| ------ | ------------------ | -------- | ------------------------------- |
+| POST   | `/register`        | Public   | Register new account            |
+| GET    | `/activate?token=` | Public   | Activate account via email link |
+| POST   | `/login`           | Public   | Login, returns JWT token        |
+| GET    | `/profile`         | Required | Get current user profile        |
 
 ### Categories
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/categories` | Required | Get all categories |
-| GET | `/categories/{type}` | Required | Get by type (`income` / `expense`) |
-| POST | `/categories` | Required | Create category |
-| PUT | `/categories/{id}` | Required | Update category |
+| Method | Endpoint             | Auth     | Description                        |
+| ------ | -------------------- | -------- | ---------------------------------- |
+| GET    | `/categories`        | Required | Get all categories                 |
+| GET    | `/categories/{type}` | Required | Get by type (`income` / `expense`) |
+| POST   | `/categories`        | Required | Create category                    |
+| PUT    | `/categories/{id}`   | Required | Update category                    |
 
 ### Income
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/incomes` | Required | Get current month's incomes |
-| POST | `/incomes` | Required | Add income |
-| DELETE | `/incomes/{id}` | Required | Delete income |
+| Method | Endpoint        | Auth     | Description                 |
+| ------ | --------------- | -------- | --------------------------- |
+| GET    | `/incomes`      | Required | Get current month's incomes |
+| POST   | `/incomes`      | Required | Add income                  |
+| DELETE | `/incomes/{id}` | Required | Delete income               |
 
 ### Expense
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/expenses` | Required | Get current month's expenses |
-| POST | `/expenses` | Required | Add expense |
-| DELETE | `/expenses/{id}` | Required | Delete expense |
+| Method | Endpoint         | Auth     | Description                  |
+| ------ | ---------------- | -------- | ---------------------------- |
+| GET    | `/expenses`      | Required | Get current month's expenses |
+| POST   | `/expenses`      | Required | Add expense                  |
+| DELETE | `/expenses/{id}` | Required | Delete expense               |
 
 ### Dashboard & Utilities
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/dashboard` | Required | Aggregated dashboard data |
-| POST | `/filter` | Required | Filter transactions |
-| GET | `/excel/download/incomes` | Required | Export incomes to Excel |
-| GET | `/excel/download/expenses` | Required | Export expenses to Excel |
-| POST | `/email/income-excel` | Required | Email income report |
-| POST | `/email/expense-excel` | Required | Email expense report |
-| GET | `/status` | Public | Health check |
+| Method | Endpoint                   | Auth     | Description               |
+| ------ | -------------------------- | -------- | ------------------------- |
+| GET    | `/dashboard`               | Required | Aggregated dashboard data |
+| POST   | `/filter`                  | Required | Filter transactions       |
+| GET    | `/excel/download/incomes`  | Required | Export incomes to Excel   |
+| GET    | `/excel/download/expenses` | Required | Export expenses to Excel  |
+| POST   | `/email/income-excel`      | Required | Email income report       |
+| POST   | `/email/expense-excel`     | Required | Email expense report      |
+| GET    | `/status`                  | Public   | Health check              |
 
 ## Authentication Flow
 
@@ -168,12 +168,12 @@ Fill in all values (see [Environment Variables](#environment-variables) below).
 
 In the Cloudflare Zero Trust Dashboard, set the tunnel's public hostname:
 
-| Field | Value |
-|---|---|
-| Subdomain | `money` (or any name) |
-| Domain | your Cloudflare domain |
-| Service Type | `HTTP` |
-| URL | `frontend:80` |
+| Field        | Value                  |
+| ------------ | ---------------------- |
+| Subdomain    | `money` (or any name)  |
+| Domain       | your Cloudflare domain |
+| Service Type | `HTTP`                 |
+| URL          | `frontend:80`          |
 
 **4. Deploy**
 
@@ -232,6 +232,7 @@ CLOUDFLARE_TUNNEL_TOKEN=your_tunnel_token
 ```
 
 **Generate a secure JWT secret:**
+
 ```bash
 openssl rand -hex 64
 ```
@@ -265,12 +266,12 @@ docker compose up db -d
 
 ## Docker Images
 
-| Service | Base Image | Size Optimization |
-|---|---|---|
-| backend | `maven:3.9.14` → `eclipse-temurin:21-jre-alpine` | Multi-stage build |
-| frontend | `node:22-alpine` → `nginx:alpine` | Multi-stage build |
-| db | `mariadb:11` | Official image |
-| cloudflared | `cloudflare/cloudflared:latest` | Official image |
+| Service     | Base Image                                       | Size Optimization |
+| ----------- | ------------------------------------------------ | ----------------- |
+| backend     | `maven:3.9.14` → `eclipse-temurin:21-jre-alpine` | Multi-stage build |
+| frontend    | `node:22-alpine` → `nginx:alpine`                | Multi-stage build |
+| db          | `mariadb:11`                                     | Official image    |
+| cloudflared | `cloudflare/cloudflared:latest`                  | Official image    |
 
 ## Security Notes
 
