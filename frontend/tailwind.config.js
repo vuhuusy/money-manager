@@ -10,6 +10,9 @@ export default {
         primary: "#7c3aed",
         "primary-dark": "#6d28d9",
       },
+      padding: {
+        "safe-bottom": "env(safe-area-inset-bottom)",
+      },
     },
   },
   plugins: [],

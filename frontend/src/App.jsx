@@ -9,11 +9,13 @@ import Filter from "./pages/Filter";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import LandingPage from "./pages/LandingPage";
+import { IOSInstallPrompt } from "./components/common";
 
 const App = () => {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} pauseOnHover closeOnClick />
+      <IOSInstallPrompt />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Root />} />
